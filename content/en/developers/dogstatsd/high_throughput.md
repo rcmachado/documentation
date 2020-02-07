@@ -329,12 +329,11 @@ default for the `BatchedDogStatsd` client and disabled by default for the
 | `datadog.dogstatsd.client.packets_sent`    | count       | Number of datagrams successfully sent to the Agent.                                     |
 | `datadog.dogstatsd.client.packets_dropped` | count       | Number of datagrams dropped by the DogStatsD client.                                    |
 
-To enable or disable telemetry use the `disable_telemetry` argument. Beware,
-using the telemetry with the `DogStatsd` client will increase network usage
-significantly, it is advise to use the `BatchedDogStatsd` when using the
-telemetry.
+To enable or disable telemetry, use the `disable_telemetry` argument. 
 
-To enable it on the `DogStatsd` client:
+**Note**: Using telemetry with the `DogStatsd` client increases network usage significantly. It is advised to use `BatchedDogStatsd` when using the telemetry.
+
+To enable telemetry on the `DogStatsd` client:
 
 ```php
 use DataDog\DogStatsd;
