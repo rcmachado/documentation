@@ -314,9 +314,7 @@ Telemetry will soon be added to the Java client.
 {{% /tab %}}
 {{% tab "PHP" %}}
 
-Starting with version `1.5.0` of the PHP client the telemetry is enabled by
-default for the `BatchedDogStatsd` client and disabled by default for the
-`DogStatsd` client.
+Starting with version `1.5.0` of the PHP client, the telemetry is enabled by default for the `BatchedDogStatsd` client and disabled by default for the `DogStatsd` client.
 
 
 | Metrics Name                               | Metric Type | Description                                                                             |
