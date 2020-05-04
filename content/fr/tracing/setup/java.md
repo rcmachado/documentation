@@ -76,20 +76,20 @@ Les intégrations bêta sont désactivées par défaut, mais peuvent être activ
 
 `dd-java-agent` prend en charge le tracing automatique des frameworks Web suivants :
 
-| Serveur                  | Versions   | Type de prise en charge    | Noms des instrumentations (utilisés pour la configuration) |
-| ----------------------- | ---------- | --------------- | ---------------------------------------------- |
-| Serveur Akka-Http        | 10.0+      | Prise en charge complète | `akka-http`, `akka-http-server`                |
-| Finatra Web             | 2.9+       | Prise en charge complète | `finatra`                                      |
-| Grizzly                 | 2.0+       | [Bêta][8]       | `grizzly`                                      |
-| Servlet Java compatible | 2.3+, 3.0+ | Prise en charge complète | `servlet`, `servlet-2`, `servlet-3`            |
-| Annotations Jax-RS      | JSR311-API | Prise en charge complète | `jax-rs`, `jaxrs`, `jax-rs-annotations`        |
-| Jetty (hors servlet)     | 8+         | [Bêta][8]       | `jetty`, `jetty-8`                             |
-| Netty HTTP Server       | 3.8+       | Prise en charge complète | `netty`, `netty-3.8`, `netty-4.0`, `netty-4.1` |
-| Play                    | 2.4-2.7    | Prise en charge complète | `play`                                         |
-| Ratpack                 | 1.4+       | Prise en charge complète | `ratpack`                                      |
-| Spark Java              | 2.3+       | [Bêta][8]       | `sparkjava` (nécessite `jetty`)                 |
-| Spring Web (MVC)        | 4.0+       | Prise en charge complète | `spring-web`                                   |
-| Spring WebFlux          | 5.0+       | Prise en charge complète | `spring-webflux`                               |
+| Serveur                 | Versions   | Type de prise en charge  | Noms des instrumentations (utilisés pour la configuration) |
+| ----------------------- | ---------- | ------------------------ | ---------------------------------------------------------- |
+| Serveur Akka-Http       | 10.0+      | Prise en charge complète | `akka-http`, `akka-http-server`                            |
+| Finatra Web             | 2.9+       | Prise en charge complète | `finatra`                                                  |
+| Grizzly                 | 2.0+       | [Bêta][8]                | `grizzly`                                                  |
+| Servlet Java compatible | 2.3+, 3.0+ | Prise en charge complète | `servlet`, `servlet-2`, `servlet-3`                        |
+| Annotations Jax-RS      | JSR311-API | Prise en charge complète | `jax-rs`, `jaxrs`, `jax-rs-annotations`, `jax-rs-filter`   |
+| Jetty (hors servlet)    | 8+         | [Bêta][8]                | `jetty`, `jetty-8`                                         |
+| Netty HTTP Server       | 3.8+       | Prise en charge complète | `netty`, `netty-3.8`, `netty-4.0`, `netty-4.1`             |
+| Play                    | 2.3-2.7    | Prise en charge complète | `play`, `play-action`                                      |
+| Ratpack                 | 1.5+       | Prise en charge complète | `ratpack`                                                  |
+| Spark Java              | 2.3+       | [Bêta][8]                | `sparkjava` (requires `jetty`)                             |
+| Spring Web (MVC)        | 4.0+       | Prise en charge complète | `spring-web`                                               |
+| Spring WebFlux          | 5.0+       | Prise en charge complète | `spring-webflux`                                           |
 
 **Le tracing de frameworks Web permet :** le calcul du délai entre la requête HTTP et la réponse, l'application de tags à la requête HTTP (code de statut, méthode, etc.), la capture des erreurs et des traces de pile, la mise en corrélation des requêtes Web avec les opérations en backend ainsi que la mise en place d'un tracing distribué.
 
@@ -107,25 +107,26 @@ Vos frameworks Web préférés ne sont pas disponibles ? Datadog élargit conti
 
 `dd-java-agent` prend en charge le tracing automatique des frameworks réseau suivants :
 
-| Framework                | Versions    | Type de prise en charge    | Noms des instrumentations (utilisés pour la configuration) |
-| ------------------------ | ----------- | --------------- | ---------------------------------------------- |
-| Apache HTTP Client       | 4.0+        | Prise en charge complète | `httpclient`                                   |
-| Apache HTTP Async Client | 4.0+        | Prise en charge complète | `httpasyncclient`, `apache-httpasyncclient`    |
-| Kit de développement Java AWS             | 1.11+, 2.2+ | Prise en charge complète | `aws-sdk`                                      |
-| Google HTTP Client       | 1.19.0+     | Prise en charge complète | `google-http-client`                           |
-| gRPC                     | 1.5+        | Prise en charge complète | `grpc`, `grpc-client`, `grpc-server`           |
-| HttpURLConnection        | Toutes         | Prise en charge complète | `httpurlconnection`, `urlconnection`           |
-| Clients Kafka            | 0.11+       | Prise en charge complète | `kafka`                                        |
-| Kafka Streams            | 0.11+       | Prise en charge complète | `kafka`, `kafka-streams`                       |
-| Java RMI                 | Toutes         | Prise en charge complète | `rmi`, `rmi-client`, `rmi-server`              |
-| Clients Jax RS           | 2.0+        | Prise en charge complète | `jax-rs`, `jaxrs`, `jax-rs-client`             |
-| Jersey Client            | 1.9+        | Prise en charge complète | `jax-rs`, `jaxrs`, `jax-rs-client`             |
-| JMS                      | 1 et 2     | Prise en charge complète | `jms`                                          |
-| Netty HTTP Client        | 4.0+        | Prise en charge complète | `netty`, `netty-4.0`, `netty-4.1`              |
-| OkHTTP                   | 3.0+        | Prise en charge complète | `okhttp`, `okhttp-3`                           |
-| Play WSClient            | 1.0+        | Prise en charge complète | `play-ws`                                      |
-| Rabbit AMQP              | 2.7+        | Prise en charge complète | `amqp`, `rabbitmq`                             |
-| Spring WebClient         | 5.0+        | Prise en charge complète | `spring-webflux`, `spring-webflux-client`      |
+| Framework                     | Versions    | Type de prise en charge  | Noms des instrumentations (utilisés pour la configuration) |
+| ----------------------------- | ----------- | ------------------------ | ---------------------------------------------------------- |
+| Apache HTTP Client            | 4.0+        | Prise en charge complète | `httpclient`, `apache-httpclient`, `apache-http-client`    |
+| Apache HTTP Async Client      | 4.0+        | Prise en charge complète | `httpasyncclient`, `apache-httpasyncclient`                |
+| Kit de développement Java AWS | 1.11+, 2.2+ | Prise en charge complète | `aws-sdk`                                                  |
+| Commons HTTP Client           | 2.0+        | Prise en charge complète | `commons-http-client`                                      |
+| Google HTTP Client            | 1.19.0+     | Prise en charge complète | `google-http-client`                                       |
+| gRPC                          | 1.5+        | Prise en charge complète | `grpc`, `grpc-client`, `grpc-server`                       |
+| HttpURLConnection             | all         | Prise en charge complète | `httpurlconnection`, `urlconnection`                       |
+| Kafka-Clients                 | 0.11+       | Prise en charge complète | `kafka`                                                    |
+| Kafka-Streams                 | 0.11+       | Prise en charge complète | `kafka`, `kafka-streams`                                   |
+| Java RMI                      | all         | Prise en charge complète | `rmi`, `rmi-client`, `rmi-server`                          |
+| Clients Jax RS                | 2.0+        | Prise en charge complète | `jax-rs`, `jaxrs`, `jax-rs-client`                         |
+| Jersey Client                 | 1.9+        | Prise en charge complète | `jax-rs`, `jaxrs`, `jax-rs-client`                         |
+| JMS                           | 1 and 2     | Prise en charge complète | `jms`, `jms-1`, `jms-2`                                    |
+| Netty HTTP Client             | 4.0+        | Prise en charge complète | `netty`, `netty-4.0`, `netty-4.1`                          |
+| OkHTTP                        | 2.2+        | Prise en charge complète | `okhttp`, `okhttp-2`,`okhttp-3`                            |
+| Play WSClient                 | 1.0+        | Prise en charge complète | `play-ws`                                                  |
+| Rabbit AMQP                   | 2.7+        | Prise en charge complète | `amqp`, `rabbitmq`                                         |
+| Spring WebClient              | 5.0+        | Prise en charge complète | `spring-webflux`, `spring-webflux-client`                  |
 
 **Le tracing de frameworks réseau permet :** le calcul du délai entre la requête et la réponse, l'application de tags à la requête (par exemple le code de réponse), la capture des erreurs et des traces de pile, ainsi que la mise en place d'un tracing distribué.
 
@@ -135,17 +136,18 @@ Votre framework réseau préféré n'est pas disponible ? Datadog élargit cont
 
 `dd-java-agent` prend en charge le tracing automatique des frameworks/pilotes de base de données suivants :
 
-| Base de données                | Versions | Type de prise en charge    | Noms des instrumentations (utilisés pour la configuration)                                           |
-| ----------------------- | -------- | --------------- | ---------------------------------------------------------------------------------------- |
-| Couchbase               | 2.0+     | Prise en charge complète | `couchbase`                                                                              |
-| Cassandra               | 3.X      | Prise en charge complète | `cassandra`                                                                              |
-| Elasticsearch Transport | 2.0-6.x  | Prise en charge complète | `elasticsearch`, `elasticsearch-transport`, `elasticsearch-transport-{2,5,6}` (choisir un nom) |
-| Elasticsearch Rest      | 5.0-6.x  | Prise en charge complète | `elasticsearch`, `elasticsearch-rest`, `elasticsearch-rest-5`, `elasticsearch-rest-6`    |
-| JDBC                    | S. O.      | Prise en charge complète | `jdbc`                                                                                   |
-| Jedis                   | 1.4+     | Prise en charge complète | `redis`                                                                                  |
-| Lettuce                 | 5.0+     | Prise en charge complète | `lettuce`                                                                                |
-| MongoDB                 | 3.0+     | Prise en charge complète | `mongo`                                                                                  |
-| SpyMemcached            | 2.12+    | Prise en charge complète | `spymemcached`                                                                           |
+| Base de données         | Versions | Type de prise en charge  | Noms des instrumentations (utilisés pour la configuration)                                     |
+| ----------------------- | -------- | ------------------------ | ---------------------------------------------------------------------------------------------- |
+| Couchbase               | 2.0+     | Prise en charge complète | `couchbase`                                                                                    |
+| Cassandra               | 3.X      | Prise en charge complète | `cassandra`                                                                                    |
+| Elasticsearch Transport | 2.0-6.x  | Prise en charge complète | `elasticsearch`, `elasticsearch-transport`, `elasticsearch-transport-{2,5,6}` (choisir un nom) |
+| Elasticsearch Rest      | 5.0-6.x  | Prise en charge complète | `elasticsearch`, `elasticsearch-rest`, `elasticsearch-rest-5`, `elasticsearch-rest-6`          |
+| JDBC                    | N/A      | Prise en charge complète | `jdbc`, `jdbc-datasource`                                                                      |
+| Jedis                   | 1.4+     | Prise en charge complète | `jedis`, `redis`                                                                               |
+| Lettuce                 | 4.0+     | Prise en charge complète | `lettuce`, `lettuce-4-async`, `lettuce-5-rx`                                                   |
+| MongoDB                 | 3.0+     | Prise en charge complète | `mongo`                                                                                        |
+| RediScala               | 1.5+     | Prise en charge complète | `rediscala`, `redis`                                                                           |
+| SpyMemcached            | 2.12+    | Prise en charge complète | `spymemcached`                                                                                 |
 
 `dd-java-agent` est également compatible avec les pilotes JDBC courants, notamment :
 
@@ -168,16 +170,17 @@ Vos datastores préférés ne sont pas disponibles ? Datadog élargit continuel
 
 `dd-java-agent` prend en charge le tracing automatique des frameworks suivants :
 
-| Framework        | Versions | Type de prise en charge    | Noms des instrumentations (utilisés pour la configuration) |
-| ---------------- | -------- | --------------- | ---------------------------------------------- |
-| Dropwizard Views | 0.7+     | Prise en charge complète | `dropwizard`, `dropwizard-view`                |
-| Hibernate        | 3.5+     | Prise en charge complète | `hibernate`                                    |
-| Hystrix          | 1.4+     | Prise en charge complète | `hystrix`                                      |
-| JSP Rendering    | 2.3+     | Prise en charge complète | `jsp`, `jsp-render`                            |
-| Slf4J MDC        | 1+       | Prise en charge complète | `mdc` (voir également la configuration `dd.logs.injection`)    |
-| Spring Data      | 1.8+     | Prise en charge complète | `spring-data`                                  |
-| Spring Scheduling | 3.1+    | Prise en charge complète | `spring-scheduling`                            |
-| Twilio SDK       | 0+       | Prise en charge complète | `twilio-sdk`                                   |
+| Framework         | Versions | Type de prise en charge  | Noms des instrumentations (utilisés pour la configuration) |
+| ----------------- | -------- | ------------------------ | ---------------------------------------------- |
+| Dropwizard Views  | 0.7+     | Prise en charge complète | `dropwizard`, `dropwizard-view`                |
+| Hibernate         | 3.5+     | Prise en charge complète | `hibernate`, `hibernate-core`                  |
+| Hystrix           | 1.4+     | Prise en charge complète | `hystrix`                                      |
+| JSP Rendering     | 2.3+     | Prise en charge complète | `jsp`, `jsp-render`, `jsp-compile`             |
+| Slf4J MDC         | 1+       | Prise en charge complète | `mdc` (voir également la configuration `dd.logs.injection`) |
+| Project Reactor   | 3.1+     | Prise en charge complète | `reactor-core`                                 |
+| Spring Data       | 1.8+     | Prise en charge complète | `spring-data`                                  |
+| Spring Scheduling | 3.1+     | Prise en charge complète | `spring-scheduling`                            |
+| Twilio SDK        | 0+       | Prise en charge complète | `twilio-sdk`                                   |
 
 Votre framework préféré n'est pas disponible ? Datadog élargit continuellement la liste des frameworks pris en charge. Contactez [l'assistance Datadog][8] si vous avez besoin d'aide.
 

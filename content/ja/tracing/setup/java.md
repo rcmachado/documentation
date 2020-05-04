@@ -76,20 +76,20 @@ Datadog は、Oracle JDK と OpenJDK の両方の Java JRE 1.7 以上を公式�
 
 `dd-java-agent` には、次のウェブフレームワークの自動トレースのサポートが含まれます。
 
-| サーバー                  | バージョン   | サポートの種類    | インスツルメンテーション名 (コンフィギュレーションに使用) |
-|-------------------------|------------|-----------------|------------------------------------------------|
-| Akka-Http サーバー        | 10.0+      | 完全対応 | `akka-http`、`akka-http-server`                |
-| Finatra Web             | 2.9+       | 完全対応 | `finatra`                                      |
-| Grizzly                 | 2.0+       | [ベータ][8]       | `grizzly`                                      |
-| Java Servlet 互換 | 2.3+、3.0+ | 完全対応 | `servlet`、`servlet-2`、`servlet-3`            |
-| Jax-RS アノテーション      | JSR311-API | 完全対応 | `jax-rs`、`jaxrs`、`jax-rs-annotations`        |
-| Jetty (非 Servlet)     | 8+         | [ベータ][8]       | `jetty`、`jetty-8`                             |
-| Netty HTTP サーバー       | 3.8+       | 完全対応 | `netty`、`netty-3.8`、`netty-4.0`、`netty-4.1` |
-| Play                    | 2.4-2.7    | 完全対応 | `play`                                         |
-| Ratpack                 | 1.4+       | 完全対応 | `ratpack`                                      |
-| Spark Java              | 2.3+       | [ベータ][8]       | `sparkjava` (要 `jetty`)                 |
-| Spring Web (MVC)        | 4.0+       | 完全対応 | `spring-web`                                   |
-| Spring WebFlux          | 5.0+       | 完全対応 | `spring-webflux`                               |
+| サーバー                 | バージョン   | サポートの種類    | インスツルメンテーション名 (コンフィギュレーションに使用) |
+|-------------------------|------------|-----------------|-------------------------------------------------|
+| Akka-Http サーバー       | 10.0+      | 完全対応 | `akka-http`, `akka-http-server`                          |
+| Finatra Web             | 2.9+       | 完全対応 | `finatra`                                               |
+| Grizzly                 | 2.0+       | [ベータ][8] | `grizzly`                                            |
+| Java Servlet 互換        | 2.3+, 3.0+ | 完全対応 | `servlet`, `servlet-2`, `servlet-3`                     |
+| Jax-RS アノテーション     | JSR311-API | 完全対応 | `jax-rs`, `jaxrs`, `jax-rs-annotations`, `jax-rs-filter` |
+| Jetty (非 Servlet)      | 8+         | [ベータ][8] | `jetty`, `jetty-8`                                   |
+| Netty HTTP サーバー      | 3.8+       | 完全対応 | `netty`, `netty-3.8`, `netty-4.0`, `netty-4.1`          |
+| Play                    | 2.3-2.7    | 完全対応 | `play`, `play-action`                                   |
+| Ratpack                 | 1.5+       | 完全対応 | `ratpack`                                               |
+| Spark Java              | 2.3+       | [ベータ][8] | `sparkjava` (要 `jetty`)                             |
+| Spring Web (MVC)        | 4.0+       | 完全対応 | `spring-web`                                            |
+| Spring WebFlux          | 5.0+       | 完全対応 | `spring-webflux`                                        |
 
 **ウェブフレームワークトレースは次を提供します:** HTTP リクエストから応答までの時間、HTTP リクエストのタグ (ステータスコード、メソッドなど)、エラーおよびスタックトレースの取得、ウェブリクエスト内で作成された作業のリンク、分散型トレーシング
 
@@ -108,24 +108,25 @@ Datadog は、Oracle JDK と OpenJDK の両方の Java JRE 1.7 以上を公式�
 `dd-java-agent` には、次のネットワーキングフレームワークの自動トレースのサポートが含まれます。
 
 | フレームワーク                | バージョン    | サポートの種類    | インスツルメンテーション名 (コンフィギュレーションに使用) |
-|--------------------------|-------------|-----------------|------------------------------------------------|
-| Apache HTTP クライアント       | 4.0+        | 完全対応 | `httpclient`                                   |
-| Apache HTTP 非同期クライアント | 4.0+        | 完全対応 | `httpasyncclient`、`apache-httpasyncclient`    |
-| AWS Java SDK             | 1.11+、2.2+ | 完全対応 | `aws-sdk`                                      |
+|------------------------------|-------------|---------|------------------------------------------------|
+| Apache HTTP クライアント       | 4.0+        | 完全対応 | `httpclient`, `apache-httpclient`, `apache-http-client` |
+| Apache HTTP 非同期クライアント  | 4.0+        | 完全対応 | `httpasyncclient`, `apache-httpasyncclient`    |
+| AWS Java SDK                 | 1.11+, 2.2+ | 完全対応 | `aws-sdk`                                      |
+| Commons HTTP クライアント      | 2.0+        | 完全対応 | `commons-http-client`                          |
 | Google HTTP クライアント       | 1.19.0+     | 完全対応 | `google-http-client`                           |
-| gRPC                     | 1.5+        | 完全対応 | `grpc`、`grpc-client`、`grpc-server`           |
-| HttpURLConnection        | すべて         | 完全対応 | `httpurlconnection`、`urlconnection`           |
-| Kafka-Clients            | 0.11+       | 完全対応 | `kafka`                                        |
-| Kafka-Streams            | 0.11+       | 完全対応 | `kafka`、`kafka-streams`                       |
-| Java RMI                 | すべて         | 完全対応 | `rmi`、`rmi-client`、`rmi-server`              |
-| Jax RS クライアント           | 2.0+        | 完全対応 | `jax-rs`、`jaxrs`、`jax-rs-client`             |
-| Jersey クライアント            | 1.9+        | 完全対応 | `jax-rs`、`jaxrs`、`jax-rs-client`             |
-| JMS                      | 1 と 2     | 完全対応 | `jms`                                          |
-| Netty HTTP クライアント        | 4.0+        | 完全対応 | `netty`、`netty-4.0`、`netty-4.1`              |
-| OkHTTP                   | 3.0+        | 完全対応 | `okhttp`、`okhttp-3`                           |
-| Play WSClient            | 1.0+        | 完全対応 | `play-ws`                                      |
-| Rabbit AMQP              | 2.7+        | 完全対応 | `amqp`、`rabbitmq`                             |
-| Spring WebClient         | 5.0+        | 完全対応 | `spring-webflux`、`spring-webflux-client`      |
+| gRPC                         | 1.5+        | 完全対応 | `grpc`, `grpc-client`, `grpc-server`           |
+| HttpURLConnection            | all         | 完全対応 | `httpurlconnection`, `urlconnection`           |
+| Kafka-Clients                | 0.11+       | 完全対応 | `kafka`                                        |
+| Kafka-Streams                | 0.11+       | 完全対応 | `kafka`, `kafka-streams`                       |
+| Java RMI                     | all         | 完全対応 | `rmi`, `rmi-client`, `rmi-server`              |
+| Jax RS クライアント            | 2.0+        | 完全対応 | `jax-rs`, `jaxrs`, `jax-rs-client`             |
+| Jersey クライアント            | 1.9+        | 完全対応 | `jax-rs`, `jaxrs`, `jax-rs-client`             |
+| JMS                          | 1 and 2     | 完全対応 | `jms`, `jms-1`, `jms-2`                        |
+| Netty HTTP クライアント        | 4.0+        | 完全対応 | `netty`, `netty-4.0`, `netty-4.1`              |
+| OkHTTP                       | 2.2+        | 完全対応 | `okhttp`, `okhttp-2`,`okhttp-3`                |
+| Play WSClient                | 1.0+        | 完全対応 | `play-ws`                                      |
+| Rabbit AMQP                  | 2.7+        | 完全対応 | `amqp`, `rabbitmq`                             |
+| Spring WebClient             | 5.0+        | 完全対応 | `spring-webflux`, `spring-webflux-client`      |
 
 **ネットワーキングトレースは次を提供します:** リクエストから応答までの時間、リクエストのタグ (例: 応答コード)、エラーおよびスタックトレースの取得、分散型トレーシング
 
@@ -135,17 +136,18 @@ Datadog は、Oracle JDK と OpenJDK の両方の Java JRE 1.7 以上を公式�
 
 `dd-java-agent` には、次のデータベースフレームワーク/ドライバーの自動トレースのサポートが含まれます。
 
-| データベース                | バージョン | サポートの種類    | インスツルメンテーション名 (コンフィギュレーションに使用)                                           |
+| データベース              | バージョン | サポートの種類    | インスツルメンテーション名 (コンフィギュレーションに使用)                                         |
 |-------------------------|----------|-----------------|------------------------------------------------------------------------------------------|
-| Couchbase               | 2.0+     | 完全対応 | `couchbase`                                                                              |
-| Cassandra               | 3.X      | 完全対応 | `cassandra`                                                                              |
-| Elasticsearch Transport | 2.0+     | 完全対応 | `elasticsearch`、`elasticsearch-transport`、`elasticsearch-transport-{2,5,6}` (1 つ選択) |
-| Elasticsearch Rest      | 5.0+     | 完全対応 | `elasticsearch`、`elasticsearch-rest`、`elasticsearch-rest-5`、`elasticsearch-rest-6`    |
-| JDBC                    | N/A      | 完全対応 | `jdbc`                                                                                   |
-| Jedis                   | 1.4+     | 完全対応 | `redis`                                                                                  |
-| Lettuce                 | 5.0+     | 完全対応 | `lettuce`                                                                                |
-| MongoDB                 | 3.0+     | 完全対応 | `mongo`                                                                                  |
-| SpyMemcached            | 2.12+    | 完全対応 | `spymemcached`                                                                           |
+| Couchbase               | 2.0+     | 完全対応         | `couchbase`                                                                              |
+| Cassandra               | 3.X      | 完全対応         | `cassandra`                                                                              |
+| Elasticsearch Transport | 2.0-6.x  | 完全対応         | `elasticsearch`, `elasticsearch-transport`, `elasticsearch-transport-{2,5,6}` (1 つ選択)  |
+| Elasticsearch Rest      | 5.0-6.x  | 完全対応         | `elasticsearch`, `elasticsearch-rest`, `elasticsearch-rest-5`, `elasticsearch-rest-6`    |
+| JDBC                    | N/A      | 完全対応         | `jdbc`, `jdbc-datasource`                                                                |
+| Jedis                   | 1.4+     | 完全対応         | `jedis`, `redis`                                                                         |
+| Lettuce                 | 4.0+     | 完全対応         | `lettuce`, `lettuce-4-async`, `lettuce-5-rx`                                             |
+| MongoDB                 | 3.0+     | 完全対応         | `mongo`                                                                                  |
+| RediScala               | 1.5+     | 完全対応         | `rediscala`, `redis`                                                                     |
+| SpyMemcached            | 2.12+    | 完全対応         | `spymemcached`                                                                           |
 
 `dd-java-agent` は、次を含む一般的な JDBC ドライバーとも互換性があります:
 
@@ -168,15 +170,17 @@ Datadog は、Oracle JDK と OpenJDK の両方の Java JRE 1.7 以上を公式�
 
 `dd-java-agent` には、次の他のフレームワークの自動トレースのサポートが含まれます。
 
-| フレームワーク        | バージョン | サポートの種類    | インスツルメンテーション名 (コンフィギュレーションに使用) |
-|------------------|----------|-----------------|------------------------------------------------|
-| Dropwizard Views | 0.7+     | 完全対応 | `dropwizard`、`dropwizard-view`                |
-| Hibernate        | 3.5+     | 完全対応 | `hibernate`                                    |
-| Hystrix          | 1.4+     | 完全対応 | `hystrix`                                      |
-| JSP Rendering    | 2.3+     | 完全対応 | `jsp`、`jsp-render`                            |
-| Slf4J MDC        | 1+       | 完全対応 | `mdc` (`dd.logs.injection` 構成も参照してください)    |
-| Spring Data      | 1.8+     | 完全対応 | `spring-data`                                  |
-| Twilio SDK       | 0+       | 完全対応 | `twilio-sdk`                                   |
+| フレームワーク      | バージョン | サポートの種類    | インスツルメンテーション名 (コンフィギュレーションに使用) |
+|-------------------|----------|-----------------|------------------------------------------------|
+| Dropwizard Views  | 0.7+     | 完全対応         | `dropwizard`, `dropwizard-view`                |
+| Hibernate         | 3.5+     | 完全対応         | `hibernate`, `hibernate-core`                  |
+| Hystrix           | 1.4+     | 完全対応         | `hystrix`                                      |
+| JSP Rendering     | 2.3+     | 完全対応         | `jsp`, `jsp-render`, `jsp-compile`             |
+| Slf4J MDC         | 1+       | 完全対応         | `mdc` (`dd.logs.injection` 構成も参照してください) |
+| Project Reactor   | 3.1+     | 完全対応         | `reactor-core`                                 |
+| Spring Data       | 1.8+     | 完全対応         | `spring-data`                                  |
+| Spring Scheduling | 3.1+     | 完全対応         | `spring-scheduling`                            |
+| Twilio SDK        | 0+       | 完全対応         | `twilio-sdk`                                   |
 
 希望するフレームワークが見つかりませんか？Datadog では継続的にサポートを追加しています。サポートが必要な場合は、[Datadog サポート][8]にお問い合わせください。
 
