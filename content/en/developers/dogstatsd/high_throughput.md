@@ -227,11 +227,11 @@ counted as custom metrics and will not be billed.
 
 Each client shares a set of common tags.
 
-| Tag                | Description                                    | Example                |
-| ------------------ | ---------------------------------------------- | ---------------------- |
-| `client`           | The language of the client                     | `client:py`            |
-| `client_version`   | The version of the client                      | `client_version:1.2.3` |
-| `client_transport` | The transport byte the client (`udp` or `uds`) | `client_transport:uds` |
+| Tag                | Description                                       | Example                |
+| ------------------ | ------------------------------------------------- | ---------------------- |
+| `client`           | The language of the client                        | `client:py`            |
+| `client_version`   | The version of the client                         | `client_version:1.2.3` |
+| `client_transport` | The transport used by the client (`udp` or `uds`) | `client_transport:uds` |
 
 **Note**: When using UDP, network errors can't be detected by the client
 and the corresponding metrics will not reflect bytes/packets drop.
@@ -319,7 +319,32 @@ See [DataDog/datadog-go][1] for more information about the client configuration.
 {{% /tab %}}
 {{% tab "Java" %}}
 
-Telemetry will soon be added to the Java client.
+Starting with version `2.10.0` of the Java client.
+
+| Metric name                                      | Metric Type | Description                                                                                                                                                     |
+| ------------------------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `datadog.dogstatsd.client.metrics`               | count       | Number of `metrics` sent to the DogStatsD client by your application (before sampling).                                                                         |
+| `datadog.dogstatsd.client.events`                | count       | Number of `events` sent to the DogStatsD client by your application.                                                                                            |
+| `datadog.dogstatsd.client.service_checks`        | count       | Number of `service_checks` sent to the DogStatsD client by your application.                                                                                    |
+| `datadog.dogstatsd.client.bytes_sent`            | count       | Number of bytes successfully sent to the Agent.                                                                                                                 |
+| `datadog.dogstatsd.client.bytes_dropped`         | count       | Number of bytes dropped by the DogStatsD client.                                                                                                                |
+| `datadog.dogstatsd.client.packets_sent`          | count       | Number of datagrams successfully sent to the Agent.                                                                                                             |
+| `datadog.dogstatsd.client.packets_dropped`       | count       | Number of datagrams dropped by the DogStatsD client.                                                                                                            |
+| `datadog.dogstatsd.client.packets_dropped_queue` | count       | Number of datagrams dropped because the DogStatsD client queue was full.                                                                                        |
+
+To disable telemetry, use the `enableTelemetry(false)` builder option:
+
+```java
+StatsDClient client = new NonBlockingStatsDClientBuilder()
+    .hostname("localhost")
+    .port(8125)
+    .enableTelemetry(false)
+    .build();
+```
+
+See [DataDog/java-dogstatsd-client][1] for more information about the client configuration.
+
+[1]: https://github.com/DataDog/java-dogstatsd-client
 
 {{% /tab %}}
 {{% tab "PHP" %}}
