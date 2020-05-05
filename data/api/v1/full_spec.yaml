@@ -3482,6 +3482,95 @@ components:
       - LAPTOP_LARGE
       - TABLET
       - MOBILE_SMALL
+    MonitorGroupSearchResponse:
+      description: TODO.
+      example:
+        counts:
+          status:
+          - count: 2
+            name: OK
+          type:
+          - count: 2
+            name: metric
+        groups:
+        - group: '*'
+          group_tags:
+          - '*'
+          last_nodata_ts: 0
+          last_triggered_ts: 1525702966
+          monitor_id: 2738266
+          monitor_name: '[demo] Cassandra disk usage is high on {{host.name}}'
+          status: OK
+        - group: '*'
+          group_tags:
+          - '*'
+          last_nodata_ts: 0
+          last_triggered_ts: 1525703008
+          monitor_id: 1576648
+          monitor_name: '[demo] Disk usage is high on {{host.name}}'
+          status: OK
+        metadata:
+          page: 0
+          page_count: 2
+          per_page: 30
+          total_count: 2
+      properties:
+        counts:
+          description: TODO.
+          properties:
+            status:
+              $ref: '#/components/schemas/MonitorSearchCount'
+            type:
+              $ref: '#/components/schemas/MonitorSearchCount'
+          readOnly: true
+          type: object
+        groups:
+          description: TODO.
+          items:
+            $ref: '#/components/schemas/MonitorGroupSearchResult'
+          readOnly: true
+          type: array
+        metadata:
+          $ref: '#/components/schemas/MonitorSearchResponseMetadata'
+      type: object
+    MonitorGroupSearchResult:
+      description: TODO.
+      properties:
+        group:
+          description: TODO.
+          readOnly: true
+          type: string
+        group_tags:
+          description: TODO.
+          items:
+            description: TODO.
+            readOnly: true
+            type: string
+          readOnly: true
+          type: array
+        last_nodata_ts:
+          description: TODO.
+          format: int64
+          readOnly: true
+          type: integer
+        last_triggered_ts:
+          description: TODO.
+          format: int64
+          nullable: true
+          readOnly: true
+          type: integer
+        monitor_id:
+          description: TODO.
+          format: int64
+          readOnly: true
+          type: integer
+        monitor_name:
+          description: TODO.
+          readOnly: true
+          type: string
+        status:
+          $ref: '#/components/schemas/MonitorOverallStates'
+      type: object
     MonitorOptions:
       description: List of options associated with your monitor.
       properties:
@@ -3660,6 +3749,192 @@ components:
       - SKIPPED
       - UNKNOWN
       - WARN
+    MonitorSearchCount:
+      description: TODO.
+      items:
+        description: TODO.
+        properties:
+          count:
+            description: TODO.
+            format: int64
+            readOnly: true
+            type: integer
+          name:
+            description: TODO.
+            readOnly: true
+        type: object
+      type: array
+    MonitorSearchResponse:
+      description: TODO.
+      example:
+        counts:
+          muted:
+          - count: 3
+            name: false
+          - count: 3
+            name: true
+          status:
+          - count: 4
+            name: No Data
+          - count: 2
+            name: OK
+          tag:
+          - count: 6
+            name: service:cassandra
+          type:
+          - count: 6
+            name: metric
+        metadata:
+          page: 0
+          page_count: 6
+          per_page: 30
+          total_count: 6
+        monitors:
+        - classification: metric
+          creator:
+            handle: xxxx@datadoghq.com
+            id:
+              handle: xxxx@datadoghq.com
+              id: 1234
+              name: xxxx@datadoghq.com
+            name: xxxx@datadoghq.com
+          id: 2699850
+          last_triggered_ts: null
+          metrics:
+          - system.cpu.user
+          name: Cassandra CPU is high on {{host.name}} in {{availability-zone.name}}
+          notifications:
+          - handle: xxxx@datadoghq.com
+            name: xxxx@datadoghq.com
+          org_id: 1234
+          scopes:
+          - '!availability-zone:us-east-1c'
+          - name:cassandra
+          status: No Data
+          tags:
+          - service:cassandra
+          type: metric alert
+      properties:
+        count:
+          description: TODO.
+          properties:
+            muted:
+              $ref: '#/components/schemas/MonitorSearchCount'
+            status:
+              $ref: '#/components/schemas/MonitorSearchCount'
+            tag:
+              $ref: '#/components/schemas/MonitorSearchCount'
+            type:
+              $ref: '#/components/schemas/MonitorSearchCount'
+          readOnly: true
+          type: object
+        metadata:
+          $ref: '#/components/schemas/MonitorSearchResponseMetadata'
+        monitors:
+          description: TODO.
+          items:
+            $ref: '#/components/schemas/MonitorSearchResult'
+          readOnly: true
+          type: array
+      type: object
+    MonitorSearchResponseMetadata:
+      description: TODO.
+      properties:
+        page:
+          description: TODO.
+          format: int64
+          readOnly: true
+          type: integer
+        page_count:
+          description: TODO.
+          format: int64
+          readOnly: true
+          type: integer
+        per_page:
+          description: TODO.
+          format: int64
+          readOnly: true
+          type: integer
+        total_count:
+          description: TODO.
+          format: int64
+          readOnly: true
+          type: integer
+      type: object
+    MonitorSearchResult:
+      description: TODO.
+      properties:
+        classification:
+          description: TODO.
+          readOnly: true
+          type: string
+        creator:
+          $ref: '#/components/schemas/Creator'
+        id:
+          description: TODO.
+          format: int64
+          readOnly: true
+          type: integer
+        last_triggered_ts:
+          description: TODO.
+          format: int64
+          nullable: true
+          readOnly: true
+          type: integer
+        metrics:
+          description: TODO.
+          items:
+            description: TODO.
+            readOnly: true
+            type: string
+          readOnly: true
+          type: array
+        name:
+          description: TODO.
+          readOnly: true
+          type: string
+        notifications:
+          description: TODO.
+          items:
+            description: TODO.
+            properties:
+              handle:
+                description: TODO.
+                readOnly: true
+                type: string
+              name:
+                description: TODO.
+                readOnly: true
+                type: string
+            readOnly: true
+            type: object
+          readOnly: true
+          type: array
+        org_id:
+          description: TODO.
+          format: int64
+          readOnly: true
+          type: integer
+        scopes:
+          description: TODO.
+          items:
+            description: TODO.
+            readOnly: true
+            type: string
+          type: array
+        status:
+          $ref: '#/components/schemas/MonitorOverallStates'
+        tags:
+          description: TODO.
+          items:
+            description: TODO.
+            readOnly: true
+            type: string
+          readOnly: true
+          type: array
+        type:
+          $ref: '#/components/schemas/MonitorType'
+      type: object
     MonitorState:
       description: Wrapper object with the different monitor states.
       properties:
@@ -9975,15 +10250,22 @@ paths:
   /api/v1/integration/aws/logs/check_async:
     post:
       description: 'Test if permissions are present to add a log-forwarding triggers
-        for the given services and AWS account. The input is the same as for Enable
-        an AWS service log collection. Subsequent requests will always repeat the
-        above, so this endpoint can be polled intermittently instead of blocking.
+        for the given services and AWS account. The input
 
-        * Returns a status of ''created'' when it''s checking if the Lambda exists
+        is the same as for Enable an AWS service log collection. Subsequent requests
+        will always repeat the above, so this
+
+        endpoint can be polled intermittently instead of blocking.
+
+
+        - Returns a status of ''created'' when it''s checking if the Lambda exists
         in the account.
-        * Returns a status of ''waiting'' while checking.
-        * Returns a status of ''checked and ok'' if the Lambda exists. 
-        * Returns a status of ''error'' if the Lambda does not exist.'
+
+        - Returns a status of ''waiting'' while checking.
+
+        - Returns a status of ''checked and ok'' if the Lambda exists.
+
+        - Returns a status of ''error'' if the Lambda does not exist.'
       operationId: CheckAWSLogsLambdaAsync
       requestBody:
         content:
@@ -11965,6 +12247,161 @@ paths:
                 $ref: '#/components/schemas/CheckCanDeleteMonitorResponse'
           description: Deletion conflict error
       summary: Check if a monitor can be deleted
+      tags:
+      - Monitors
+  /api/v1/monitor/group/search:
+    get:
+      description: Search and filter your monitor groups details.
+      operationId: SearchMonitorGroups
+      parameters:
+      - description: 'After entering a search query in your [Manage Monitor page][1]
+          use the query parameter value in the
+
+          URL of the page as value for this parameter. Consult the dedicated [manage
+          monitor documentation][2]
+
+          page to learn more.
+
+
+          The query can contain any number of space-separated monitor attributes,
+          for instance `query="type:metric status:alert"`.
+
+
+          [1]: https://app.datadoghq.com/monitors/manage
+
+          [2]: /monitors/manage_monitor/#find-the-monitors'
+        in: query
+        name: query
+        required: false
+        schema:
+          type: string
+      - description: Page to start paginating from.
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          format: int64
+          type: integer
+      - description: Number of monitors to return per page.
+        in: query
+        name: per_page
+        required: false
+        schema:
+          default: 30
+          format: int64
+          type: integer
+      - description: 'Comma separated string for sort order (e.g. `name,asc`) supported
+          fields:
+
+
+          * `name`
+
+          * `status`
+
+          * `tags`'
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorGroupSearchResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Monitors group search
+      tags:
+      - Monitors
+  /api/v1/monitor/search:
+    get:
+      description: Search and filter your monitors details.
+      operationId: SearchMonitors
+      parameters:
+      - description: 'After entering a search query in your [Manage Monitor page][1]
+          use the query parameter value in the
+
+          URL of the page as value for this parameter. Consult the dedicated [manage
+          monitor documentation][2]
+
+          page to learn more.
+
+
+          The query can contain any number of space-separated monitor attributes,
+          for instance `query="type:metric status:alert"`.
+
+
+          [1]: https://app.datadoghq.com/monitors/manage
+
+          [2]: /monitors/manage_monitor/#find-the-monitors'
+        in: query
+        name: query
+        required: false
+        schema:
+          type: string
+      - description: Page to start paginating from.
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          format: int64
+          type: integer
+      - description: Number of monitors to return per page.
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int64
+          type: integer
+      - description: 'Comma separated string for sort order (e.g. `name,asc`) supported
+          fields:
+
+
+          * `name`
+
+          * `status`
+
+          * `tags`'
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorSearchResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Monitors search
       tags:
       - Monitors
   /api/v1/monitor/validate:
@@ -14852,6 +15289,8 @@ tags:
   externalDocs:
     url: https://docs.datadoghq.com/api/?lang=bash#integration-pagerduty
   name: PagerDuty Integration
+- description: '[Check API version 2](/api/v2/roles/).'
+  name: Roles
 - description: This endpoint is outdated. Use the [new Dashboard endpoint](https://docs.datadoghq.com/api/#dashboards)
     instead.
   externalDocs:
