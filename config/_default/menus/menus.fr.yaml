@@ -1907,6 +1907,12 @@ api_v1:
   - name: Get an SLO's history
     parent: Service Level Objectives
     url: get-an-slos-history
+  - name: ServiceDependencies
+    url: /fr/api/v1/servicedependencies/
+    identifier: ServiceDependencies
+  - name: Get all service dependencies
+    parent: ServiceDependencies
+    url: get-all-service-dependencies
   - name: Slack Integration
     url: /fr/api/v1/slack-integration/
     identifier: Slack Integration

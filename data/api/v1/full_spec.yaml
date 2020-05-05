@@ -4771,6 +4771,18 @@ components:
       items:
         $ref: '#/components/schemas/ServiceCheck'
       type: array
+    ServiceDependency:
+      description: An object containing a list of services, their dependencies.
+      properties:
+        calls:
+          description: List of dependencies.
+          items:
+            description: Service names.
+            type: string
+          type: array
+      required:
+      - calls
+      type: object
     ServiceLevelObjective:
       description: 'A service level objective object includes a service level indicator,
         thresholds
@@ -12595,6 +12607,56 @@ paths:
       tags:
       - Metrics
       x-codegen-request-body-name: body
+  /api/v1/service_dependencies:
+    get:
+      description: 'Get a list of services and their dependencies. The services retrieved
+        are filtered by environment and a primary tag if one is defined.
+
+
+        This endpoint is in beta and is subject to changes.'
+      operationId: ListServiceDependencies
+      parameters:
+      - description: Specify what APM environment to query service dependencies by.
+        in: query
+        name: env
+        required: true
+        schema:
+          example: env:production
+          type: string
+      - description: Specify what primary tag to query service dependencies by.
+        in: query
+        name: primary_tag
+        required: false
+        schema:
+          example: availability-zone:us1-east
+          type: string
+      - description: Specify the start of the timeframe in epoch seconds to query
+          for.
+        in: query
+        name: start
+        required: false
+        schema:
+          format: int64
+          type: integer
+      - description: Specify the end of the timeframe in epoch seconds to query for.
+        in: query
+        name: end
+        required: false
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: '#/components/schemas/ServiceDependency'
+                type: object
+          description: OK
+      summary: Get all service dependencies
+      tags:
+      - ServiceDependencies
   /api/v1/slo:
     get:
       description: Get multiple service level objective objects by their IDs.
@@ -14906,6 +14968,10 @@ tags:
 
     and improve communication with internal and external users.'
   name: Service Level Objectives
+- description: APM Service Map API.
+  externalDocs:
+    url: https://docs.datadoghq.com/tracing/visualization/services_map/
+  name: ServiceDependencies
 - description: 'Configure your [Datadog-Slack integration](https://docs.datadoghq.com/integrations/slack)
 
     directly through Datadog API.'
